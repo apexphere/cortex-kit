@@ -142,6 +142,59 @@ else
   TESTS_PASSED=$((TESTS_PASSED + 1))
 fi
 
+# Test 8: Enable command in fresh directory
+echo ""
+echo "Test 8: Testing enable command in fresh directory..."
+mkdir test-enable
+cd test-enable
+node ../bin/cli.js enable > /dev/null 2>&1
+
+assert_file_exists "AGENTS.md"
+assert_file_exists "CLAUDE.md"
+assert_file_exists "README.md"
+assert_dir_exists "docs"
+
+cd ..
+rm -rf test-enable
+
+# Test 9: Enable with existing README (should append)
+echo ""
+echo "Test 9: Testing enable with existing README.md..."
+mkdir test-enable-readme
+cd test-enable-readme
+echo "# Existing Project" > README.md
+node ../bin/cli.js enable > /dev/null 2>&1
+
+if grep -q "Existing Project" README.md && grep -q "AI-Native Development" README.md; then
+  echo -e "${GREEN}✓${NC} README.md appended correctly"
+  TESTS_PASSED=$((TESTS_PASSED + 1))
+else
+  echo -e "${RED}✗${NC} README.md not appended correctly"
+  TESTS_FAILED=$((TESTS_FAILED + 1))
+fi
+
+cd ..
+rm -rf test-enable-readme
+
+# Test 10: Enable with existing AGENTS.md (should skip)
+echo ""
+echo "Test 10: Testing enable skips existing AGENTS.md..."
+mkdir test-enable-skip
+cd test-enable-skip
+echo "# Custom AGENTS" > AGENTS.md
+node ../bin/cli.js enable > /dev/null 2>&1
+
+if grep -q "Custom AGENTS" AGENTS.md && ! grep -q "Development Workflow" AGENTS.md; then
+  echo -e "${GREEN}✓${NC} AGENTS.md preserved (not overwritten)"
+  TESTS_PASSED=$((TESTS_PASSED + 1))
+else
+  echo -e "${RED}✗${NC} AGENTS.md was overwritten"
+  TESTS_FAILED=$((TESTS_FAILED + 1))
+fi
+
+cd ..
+rm -rf test-enable-skip
+
 # Summary
 echo ""
 echo "================================="

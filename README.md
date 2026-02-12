@@ -34,6 +34,17 @@ cd my-awesome-project
 npx cortex-kit init .
 ```
 
+### Enable AI features in an existing project
+```bash
+cd your-existing-project
+npx cortex-kit enable
+```
+
+The `enable` command is perfect for adding AI context to existing projects:
+- Skips `AGENTS.md` if it already exists
+- Appends AI setup section to existing `README.md` (or creates new one)
+- Always creates `CLAUDE.md` and `docs/` directory
+
 ## What Gets Generated
 
 - `AGENTS.md` - Project context for AI coding agents (workflows, testing, conventions)

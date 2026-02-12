@@ -1,6 +1,6 @@
 import { resolve, join } from 'path';
 import { mkdir } from 'fs/promises';
-import { generateFiles } from './generator.js';
+import { generateFiles, enableFiles } from './generator.js';
 
 /**
  * Initialize a new AI-native project
@@ -56,4 +56,31 @@ export async function init(projectName) {
   console.log('  - CLAUDE.md: Reference to AGENTS.md');
   console.log('  - README.md: Setup instructions');
   console.log('  - docs/: Architecture documentation folder');
+}
+
+/**
+ * Enable AI features in an existing project
+ */
+export async function enable() {
+  const targetDir = process.cwd();
+
+  console.log('🚀 Enabling AI features in current directory...');
+
+  // Create docs directory
+  const docsDir = join(targetDir, 'docs');
+  try {
+    await mkdir(docsDir, { recursive: true });
+    console.log('✓ Created docs/ directory');
+  } catch (error) {
+    throw new Error(`Failed to create docs directory: ${error.message}`);
+  }
+
+  // Generate files for existing project (skip AGENTS.md if exists, append README.md)
+  await enableFiles(targetDir);
+
+  console.log('\n✨ AI features enabled!');
+  console.log('\nNext steps:');
+  console.log('  1. Customize AGENTS.md with your project details');
+  console.log('  2. Add build and test commands to AGENTS.md');
+  console.log('  3. Open your project with Claude Code or other AI tools');
 }
