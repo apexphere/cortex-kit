@@ -1,0 +1,33 @@
+{
+  "name": "cortex-kit",
+  "version": "1.0.0",
+  "description": "CLI tool that scaffolds AI-native projects with AGENTS.md specifications",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "cortex-kit": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "./tests/test.sh",
+    "prepublishOnly": "./tests/test.sh"
+  },
+  "keywords": [
+    "cli",
+    "agents.md",
+    "claude-code",
+    "ai-native",
+    "scaffold",
+    "ai-coding",
+    "copilot",
+    "cursor"
+  ],
+  "author": "Yazan Ghafir",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "bin/",
+    "src/"
+  ]
+}

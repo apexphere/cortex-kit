@@ -1,0 +1,21 @@
+# Development files
+IDEA.md
+.git
+.gitignore
+*.log
+
+# Test files
+tests/
+*.test.js
+
+# Documentation (keep README.md)
+docs/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Plans
+.claude/
