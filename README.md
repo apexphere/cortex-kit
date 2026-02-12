@@ -77,3 +77,27 @@ Learn more: [agents.md](https://agents.md/)
 ## License
 
 MIT
+
+
+---
+
+## AI-Native Development
+
+This project is configured for AI-native development with AI coding assistants.
+
+### AI Configuration Files
+
+- **AGENTS.md**: Project context and conventions for AI coding agents (Claude Code, GitHub Copilot, Cursor, etc.)
+- **CLAUDE.md**: Reference file that points Claude Code to AGENTS.md
+
+### Working with AI Assistants
+
+AI coding assistants will automatically read `AGENTS.md` to understand:
+- How to build and test your project
+- Code quality standards to follow
+- Testing requirements
+- Documentation expectations
+
+Customize `AGENTS.md` with your project-specific build commands, test commands, and conventions.
+
+Generated with [cortex-kit](https://www.npmjs.com/package/cortex-kit)
